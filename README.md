@@ -9,11 +9,11 @@ J’ai commencé avec des exemples simples pour apprendre la structure HTML et l
 
 ## Partie 2 : Scraping dynamique avec Selenium
 
-J’ai maîtrisé Selenium pour interagir avec des sites dynamiques, simulant des actions utilisateur (défilement, clics) et extrayant des données mises à jour en temps réel.
+J’ai maîtrisé Selenium pour interagir avec des sites dynamiques, simulant des actions utilisateur et extrayant des données mises à jour en temps réel.
 
 ## Partie 3 : Extraction de données via une API
 
-J’ai appris à utiliser les API (par exemple, OpenWeather et GitHub) pour obtenir directement des données, ce qui est plus simple et fiable que le scraping quand les API sont disponibles.
+J’ai appris à utiliser les API  OpenWeather pour obtenir directement des données, ce qui est plus simple et fiable que le scraping quand les API sont disponibles.
 
 ## Partie 4 : Comparaison des méthodes et conclusion
 
