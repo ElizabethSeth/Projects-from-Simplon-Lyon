@@ -103,21 +103,34 @@ Docker-Compose is a tool designed to simplify the management of multi-container 
 Docker-Compose allows you to:
 
 Define Services: In a single file, you describe all the containers your application needs, including their images, configurations, environment variables, and volumes.
-Manage Dependencies: Specify the relationships between services. For example, you can declare that your API should wait for the database to start before running.
-Automate Networking: Compose automatically creates a shared network so that containers can communicate using simple service names instead of IP addresses.
-Simplify Deployment: A single command (docker-compose up) can bring up the entire application stack, making it easy to replicate the environment on any machine.
+Manage Dependencies: Specify the relationships between services. 
+
+For example, you can declare that your API should wait for the database to start before running.
+Automate Networking: 
+Compose automatically creates a shared network so that containers can communicate using simple service names instead of IP addresses.
+Simplify Deployment: 
+A single command (docker-compose up) can bring up the entire application stack, making it easy to replicate the environment on any machine.
+
 2. Key Features of Docker-Compose
 Centralized Configuration: All services and their dependencies are declared in a human-readable YAML file.
-Consistency Across Environments: The same docker-compose.yml file works in development, testing, and production with minimal adjustments.
-Service Isolation: Each container runs independently but can communicate with others as needed, ensuring modularity.
-Volume Management: Compose makes it easy to persist data across container restarts or updates, essential for databases like PostgreSQL.
-Scaling: You can scale specific services up or down with a simple command, such as running multiple instances of your API for better performance.
-3. Why Use Docker-Compose Instead of Running Containers Manually?
-Ease of Use: Instead of writing and managing multiple docker run commands with complex options, you define everything once in a docker-compose.yml file.
-Automation: Start, stop, or rebuild all containers with single commands like docker-compose up or docker-compose down.
+Consistency Across Environments:
+ The same docker-compose.yml file works in development, testing, and production with minimal adjustments.
+Service Isolation:
+Each container runs independently but can communicate with others as needed, ensuring modularity.
+Volume Management:
+Compose makes it easy to persist data across container restarts or updates, essential for databases like PostgreSQL.
+Scaling:
+You can scale specific services up or down with a simple command, such as running multiple instances of your API for better performance.
+4. Why Use Docker-Compose Instead of Running Containers Manually?
+Ease of Use:
+
+Instead of writing and managing multiple docker run commands with complex options, you define everything once in a docker-compose.yml file.
+Automation: 
+
+Start, stop, or rebuild all containers with single commands like docker-compose up or docker-compose down.
 Service Dependencies: Compose understands the relationships between services, ensuring they start in the correct order. For example, your API won’t start until the database is ready.
 Collaboration: Sharing the docker-compose.yml file allows teams to work in identical environments without worrying about individual setups.
-4. How Does Docker-Compose Improve Multi-Container Applications?
+6. How Does Docker-Compose Improve Multi-Container Applications?
 Imagine an application that requires:
 
 A PostgreSQL database to store data.
