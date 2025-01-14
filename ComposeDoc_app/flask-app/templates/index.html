@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Airbnb Listings</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+        .amenity-button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #007bff;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .amenity-button:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .amenity-button.selected {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+        .result-item {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #fafafa;
+        }
+        .result-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .result-item a:hover {
+            text-decoration: underline;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Airbnb Listings by Amenities</h1>
+        <div id="amenities-buttons">
+            <!-- Кнопки удобств будут добавлены сюда -->
+        </div>
+        <div class="button-container">
+            <button onclick="searchListings()">Search</button>
+            <button onclick="clearSelection()">Clear</button>
+        </div>
+        <h2>Results:</h2>
+        <div id="results">
+            <!-- Результаты поиска будут отображены здесь -->
+        </div>
+    </div>
+
+    <script>
+        const amenities = [
+            "TV", "Cable TV", "Wifi", "Air conditioning", "Pool", "Kitchen",
+            "Free parking on premises", "Elevator", "Hot tub", "Washer",
+            "Dryer", "Essentials", "Shampoo", "Hangers", "Hair dryer", "Iron",
+            "Laptop friendly workspace", "Self check-in", "Lockbox", "Hot water",
+            "Bed linens", "Extra pillows and blankets", "Ethernet connection",
+            "Microwave", "Coffee maker", "Refrigerator", "Dishes and silverware",
+            "Cooking basics", "Stove", "BBQ grill", "Garden or backyard",
+            "Well-lit path to entrance", "Disabled parking spot", "Step-free access",
+            "Wide clearance to bed"
+        ];
+
+        const selectedAmenities = new Set();
+
+        const amenitiesButtonsContainer = document.getElementById('amenities-buttons');
+        amenities.forEach(amenity => {
+            const button = document.createElement('button');
+            button.innerText = amenity;
+            button.className = 'amenity-button';
+            button.onclick = () => {
+                if (selectedAmenities.has(amenity)) {
+                    selectedAmenities.delete(amenity);
+                    button.classList.remove('selected');
+                } else {
+                    selectedAmenities.add(amenity);
+                    button.classList.add('selected');
+                }
+            };
+            amenitiesButtonsContainer.appendChild(button);
+        });
+
+        function searchListings() {
+            fetch('/search_amenities', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ amenities: Array.from(selectedAmenities) }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = '';
+                if (data.matching_listings && data.matching_listings.length > 0) {
+                    data.matching_listings.forEach(listing => {
+                        const resultItem = document.createElement('div');
+                        resultItem.className = 'result-item';
+                        resultItem.innerHTML = `<strong>City:</strong> ${listing.city}<br><a href="${listing.listing_url}" target="_blank">Listing URL</a>`;
+                        resultsContainer.appendChild(resultItem);
+                    });
+                } else {
+                    resultsContainer.innerHTML = '<p>No listings found</p>';
+                }
+            });
+        }
+
+        function clearSelection() {
+            selectedAmenities.clear();
+            document.querySelectorAll('.amenity-button').forEach(button => {
+                button.classList.remove('selected');
+            });
+            document.getElementById('results').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
