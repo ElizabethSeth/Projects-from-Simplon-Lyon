@@ -20,7 +20,7 @@ Build the Image: Use the docker build command to create the image from the Docke
 2. Role of the docker build Command
 The docker build command processes the instructions in the Dockerfile to create a Docker image.
 Syntax Example:
-# docker build -t my_image_name:latest .
+##### docker build -t my_image_name:latest .
 -t tags the image with a name and optionally a version.
 . specifies the build context (directory containing the Dockerfile).
 3. Differences Between FROM, WORKDIR, and CMD in a Dockerfile
@@ -34,7 +34,7 @@ A base image serves as the foundation of your container, providing a pre-configu
 5. Running a Container Based on the Image
 
 Use the docker run command:
-# docker run -d --name my_container -p 5000:5000 my_image_name
+#### docker run -d --name my_container -p 5000:5000 my_image_name
 -d runs the container in detached mode.
 --name assigns a name to the container.
 -p maps a host port to the container port.
@@ -42,7 +42,7 @@ Use the docker run command:
 
 If the source file (e.g., a Python script) is modified:
 Rebuild the image:
-# docker build -t my_image_name:latest .
+#### docker build -t my_image_name:latest .
 Stop and remove the old container:
 #docker stop my_container && docker rm my_container
 Start a new container with the updated image.
