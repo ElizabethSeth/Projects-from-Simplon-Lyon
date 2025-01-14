@@ -16,13 +16,11 @@ Set Working Directory: Use WORKDIR to set the directory in the container where c
 Install Dependencies: Use RUN to execute shell commands to install required dependencies or configure the environment.
 Specify the Entrypoint: Use CMD or ENTRYPOINT to define the default command that runs when a container starts.
 Build the Image: Use the docker build command to create the image from the Dockerfile.
-2. Role of the docker build Command
 
+2. Role of the docker build Command
 The docker build command processes the instructions in the Dockerfile to create a Docker image.
 Syntax Example:
-bash
-Copy code
-docker build -t my_image_name:latest .
+# docker build -t my_image_name:latest .
 -t tags the image with a name and optionally a version.
 . specifies the build context (directory containing the Dockerfile).
 3. Differences Between FROM, WORKDIR, and CMD in a Dockerfile
@@ -36,9 +34,7 @@ A base image serves as the foundation of your container, providing a pre-configu
 5. Running a Container Based on the Image
 
 Use the docker run command:
-bash
-Copy code
-docker run -d --name my_container -p 5000:5000 my_image_name
+# docker run -d --name my_container -p 5000:5000 my_image_name
 -d runs the container in detached mode.
 --name assigns a name to the container.
 -p maps a host port to the container port.
@@ -46,11 +42,7 @@ docker run -d --name my_container -p 5000:5000 my_image_name
 
 If the source file (e.g., a Python script) is modified:
 Rebuild the image:
-bash
-Copy code
-docker build -t my_image_name:latest .
+# docker build -t my_image_name:latest .
 Stop and remove the old container:
-bash
-Copy code
-docker stop my_container && docker rm my_container
+#docker stop my_container && docker rm my_container
 Start a new container with the updated image.
