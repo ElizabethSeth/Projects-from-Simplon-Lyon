@@ -123,17 +123,17 @@ Scaling:
 You can scale specific services up or down with a simple command, such as running multiple instances of your API for better performance.
 4. Why Use Docker-Compose Instead of Running Containers Manually?
 Ease of Use:
-
 Instead of writing and managing multiple docker run commands with complex options, you define everything once in a docker-compose.yml file.
 Automation: 
-
 Start, stop, or rebuild all containers with single commands like docker-compose up or docker-compose down.
-Service Dependencies: Compose understands the relationships between services, ensuring they start in the correct order. For example, your API won’t start until the database is ready.
-Collaboration: Sharing the docker-compose.yml file allows teams to work in identical environments without worrying about individual setups.
+Service Dependencies:
+Compose understands the relationships between services, ensuring they start in the correct order. For example, your API won’t start until the database is ready.
+Collaboration: 
+Sharing the docker-compose.yml file allows teams to work in identical environments without worrying about individual setups.
 6. How Does Docker-Compose Improve Multi-Container Applications?
 Imagine an application that requires:
 
-A PostgreSQL database to store data.
+A SQL database to store data.
 A Flask API to handle requests and interact with the database.
 A React frontend to provide a user interface.
 Using Docker-Compose:
